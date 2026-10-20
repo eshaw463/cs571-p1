@@ -8,12 +8,13 @@ const MediaItem = (props) => {
  //useEffects
 
 
- 
+
  
   return (
     <div style={{ border: '1px solid blue', padding: '10px', margin: '5px' }}>
-      <p>Card content below:</p>
       <p>{props?.name}</p>
+	  <p>img here from database</p>
+	  <p>item description from database</p>
     </div>
   );
 };
