@@ -8,3 +8,4 @@ https://www.figma.com/design/zMLvyVOtTIxSfb03lQykcc/CS571-Web-Project?node-id=0-
 * make some "account" system (not making passwords rn for testing, just data associated w/ a username)
 * make ratings buttons
 * make removal
+* update CSS/ colors
