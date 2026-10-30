@@ -1,7 +1,11 @@
 import React from 'react';
+import './App.css';
 import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
 import MediaItem from "./MediaItem.jsx";
+import Sidebar from './Sidebar.jsx';
+import AddMedia from './AddMedia.jsx';
+import { Routes, Route } from 'react-router-dom';
 function App() {
 
   // State Variables
@@ -39,6 +43,11 @@ function searchReset(){
 // App Return
   return (
     <>
+    <div class="sidebar">
+       <Sidebar/>
+    </div>
+
+    <div class="content">
     <h1>AAAAAAAAAAAAAAAA</h1>
 
     <Form>
@@ -50,7 +59,7 @@ function searchReset(){
 			<br />
 			
         </Form>
-
+    
 
     <Container className="mt-5">
       <Row>
@@ -64,7 +73,12 @@ function searchReset(){
             </Col>
           ))}
       </Row>
+
+       <Routes>
+            <Route path="/add-media" element={<AddMedia />} />
+        </Routes>
     </Container>
+    </div>
     </>
   );
 }
