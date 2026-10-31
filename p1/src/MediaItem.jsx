@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
-const MediaItem = (props) => {
+function MediaItem(props) {
   // State Var
 
   // useEffects

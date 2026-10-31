@@ -1,16 +1,19 @@
-// add media screen to input info to add to database OR user can search from media already in database to add
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
-const AddMedia = (props) => {
+const MediaItem = (props) => {
   // State Var
 
   // useEffects
 
-  return (
-    <p>sadfdskapfsdpoaf;ldsa,f;l</p>
-  );
+  return <Card style={{backgroundColor: "rgba(0, 0, 0, 0)",
+  color: "#ffffff", border: '0.1rem solid blue', borderRadius: "0.75rem",
+  padding: '10px', margin: '5px'}}>
+    <p>{props ? props.name : "No item name provided"}</p>
+    <p>img here from database</p>
+    <p>item description from database</p>
+  </Card>;
 };
 
-export default AddMedia;
+export default MediaItem;

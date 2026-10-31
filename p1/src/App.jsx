@@ -2,10 +2,8 @@ import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
-import { Routes, Route } from 'react-router-dom';
 import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
-import AddMedia from './AddMedia.jsx';
 
 function App() {
   // State Variables
@@ -60,7 +58,7 @@ function App() {
           onChange={e => {setFilterContains(e.target.value); loader(true)}}
         />
         <br />
-        <Button onClick={searchReset}>Reset Search</Button> 
+        <Button onClick={searchReset}>Reset Search</Button>
         <br />
         <br />
       </Form>
@@ -78,11 +76,6 @@ function App() {
             </Col>
           ))}
         </Row>
-
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/add-media" element={<AddMedia />} />
-        </Routes>
       </Container>
     </div>
   </>;
