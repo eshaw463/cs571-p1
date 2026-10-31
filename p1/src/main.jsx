@@ -1,13 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 import React from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddMedia from './pages/AddMedia.jsx';
 import NotFound from './pages/NotFound.jsx';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-
 import App from './pages/App.jsx';
 
 createRoot(document.getElementById('root')).render(

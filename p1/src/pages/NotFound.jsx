@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './NotFound.css';
 
 function NotFound() {
   const navigate = useNavigate();
@@ -8,8 +9,8 @@ function NotFound() {
     <h1>404.</h1>
     <p>Go somewhere else.</p>
     <a
-      onClick={() => navigate('/add-media')}
-      style={{color: "blue"}}
+      id="returnLink"
+      onClick={() => navigate('/')}
     >Back to safety</a>
   </>;
 }

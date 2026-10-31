@@ -1,0 +1,7 @@
+#returnLink {
+    color: blue;
+}
+#returnLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
