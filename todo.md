@@ -7,8 +7,6 @@ Main Tasks:
 * make local storage
   * fake larger uploads
 * make ratings buttons
-* add removal of media
-* update CSS/colors
 * sidebar for genres/media types
 
 should prob also:
