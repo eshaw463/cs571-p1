@@ -56,9 +56,10 @@ function App() {
           id="searchContains"
           value={filterContains}
           onChange={e => {setFilterContains(e.target.value); loader(true)}}
+          placeholder="Search for a piece of media..."
         />
         <br />
-        <Button onClick={searchReset}>Reset Search</Button>
+        <Button id="resetSearch" onClick={searchReset}>Reset Search</Button>
         <br />
         <br />
       </Form>

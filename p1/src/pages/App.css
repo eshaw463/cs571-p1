@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #171a21;
+    background-color: #09050f;
     color: #f1f1f1;
     font-family: 'Segoe UI', Arial, sans-serif;
     min-height: 100vh;
@@ -33,8 +33,9 @@ body {
     align-items: center;
     justify-content: center;
 
-    background-color: #198754;
-    border: none;
+    background-color: #bf5f1c;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 0.02rem;
     border-radius: 12px;
 
     font-size: 75px;
@@ -43,8 +44,9 @@ body {
     transition: background-color 0.2s, transform 0.2s;
 }
 #add-media-button:hover {
-    background-color: #157347;
+    background-color: #c77338;
     transform: scale(1.02);
+    border-color: #ffffff;
 }
 #add-media-button:active {
     transform: scale(0.98);
@@ -62,7 +64,7 @@ body {
     justify-content: flex-start;
 
     background-color: #000000;
-    border: 1px solid #414b5a;
+    border: 1px solid #623c7a;
     border-radius: 8px;
 
     color: #e5e7eb;
@@ -74,8 +76,8 @@ body {
     transition: background-color 0.4s, border-color 0.4s;
 }
 .sidebar-button:hover {
-    background-color: #2d2d2d;
-    border-color: #198754;
+    background-color: #22142e;
+    border-color: #ababab;
 }
 .sidebar-button:focus {
     box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.25);
@@ -85,4 +87,10 @@ body {
 .content {
     margin-left: 15rem;
     padding: 2rem;
+}
+
+#resetSearch {
+    background-color: #2a151b;
+    border-color: #bf5f1c;
+    color: #bf5f1c;
 }
