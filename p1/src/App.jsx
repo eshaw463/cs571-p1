@@ -2,27 +2,31 @@ import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Routes, Route } from 'react-router-dom';
 import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
 import AddMedia from './AddMedia.jsx';
-import { Routes, Route } from 'react-router-dom';
-function App() {
 
+function App() {
   // State Variables
   const [media, setMedia] = useState([]);
   const [filterContains, setFilterContains] = useState();
   const [loaded, loader] = useState(false);
 
   // variables
-  let filteredMedia = media?.filter(m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-|| m.img?.toLowerCase().includes(filterContains?.toLowerCase().trim()))
-// add OR statements for description so searching seaches both name & description at once!!!! (unless we just want it to be name)
-// we should make sidebar buttons filter by GENRE or by MEDIA TYPE (music, game, etc)
+  let filteredMedia = media?.filter(
+    m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
+    || m.img?.toLowerCase().includes(filterContains?.toLowerCase().trim())
+  );
+  // TODO: add OR statements for description so searching seaches both name &
+  //     description at once!!!! (unless we just want it to be name)
+  // TODO: we should make sidebar buttons filter by GENRE or by MEDIA TYPE
+  //     (music, game, etc)
 
-  //useEffects
-
+  // useEffects
   // sample "database" we are using before making an actual database
-      // we will have to make it such that users can add items that alr exist in the database
+  // we will have to make it such that users can add items that already exist in
+  //     the database
   useEffect(() => {
     const testArr = [
       { name: "Item A", id: "a", img: "x" },
@@ -31,56 +35,57 @@ function App() {
       { name: "Item D", id: "d", img: "k" }
     ];
     setMedia(testArr);
-
   }, []);
 
-// reset search
-function searchReset(){
-	setFilterContains("");
-} // some state var set to nothing
+  // reset search
+  function searchReset() {
+    // just set the state variable to nothing
+    setFilterContains("");
+  }
 
-
-// App Return
-  return (
-    <>
+  // App Return
+  return <>
     <div class="sidebar">
-       <Sidebar/>
+      <Sidebar/>
     </div>
 
     <div class="content">
-    <h1>AAAAAAAAAAAAAAAA</h1>
+      <h1>MediaHornet</h1>
 
-    <Form>
-            <Form.Label htmlFor="searchContains">Search</Form.Label>
-            <Form.Control id="searchContains" value={filterContains} onChange={e => {setFilterContains(e.target.value); loader(true)}}/>
-            <br />
-            <Button onClick={searchReset}>Reset Search</Button> 
-			<br />
-			<br />
-			
-        </Form>
-    
+      <Form>
+        <Form.Label htmlFor="searchContains">Search</Form.Label>
+        <Form.Control
+          id="searchContains"
+          value={filterContains}
+          onChange={e => {setFilterContains(e.target.value); loader(true)}}
+        />
+        <br />
+        <Button onClick={searchReset}>Reset Search</Button> 
+        <br />
+        <br />
+      </Form>
 
-    <Container className="mt-5">
-      <Row>
-        {loaded ? filteredMedia?.map((s) => (
+      <Container className="mt-5">
+        <Row>
+          {loaded ? filteredMedia?.map((s) => (
             <Col key={s.id} xs={12} sm={12} md={6} lg={4} xl={3}>
               {MediaItem(s)}
             </Col>
-          )) : /* THIS TERNARY LOADS ALL DATA WHEN PAGE IS FIRST LOADED*/ media?.map((s) => (
+          )) : /* THIS TERNARY LOADS ALL DATA WHEN PAGE IS FIRST LOADED */
+          media?.map((s) => (
             <Col key={s.id} xs={12} sm={12} md={6} lg={4} xl={3}>
               {MediaItem(s)}
             </Col>
           ))}
-      </Row>
+        </Row>
 
-       <Routes>
-            <Route path="/add-media" element={<AddMedia />} />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/add-media" element={<AddMedia />} />
         </Routes>
-    </Container>
+      </Container>
     </div>
-    </>
-  );
+  </>;
 }
 
 export default App;

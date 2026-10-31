@@ -10,24 +10,21 @@ body {
     min-height: 100vh;
 }
 
-
-/* Sidebar: moves sidebar to the left and keeps it there*/
-.sidebar {
+/* Move sidebar to the left and keep it there */
+#sidebar {
     position: fixed;
     left: 0;
     top: 0;
 
-    width: 240px;
+    width: 15rem;
     height: 100vh;
 
     display: flex;
     flex-direction: column;
 }
 
-/* Large green add button */
-
-.add-media-button {
-    width: 100%;
+/* Large green add button on the left sidebar */
+#add-media-button {
     height: 200px;
 
     display: flex;
@@ -43,20 +40,16 @@ body {
 
     transition: background-color 0.2s, transform 0.2s;
 }
-
-.add-media-button:hover {
+#add-media-button:hover {
     background-color: #157347;
     transform: scale(1.02);
 }
-
-.add-media-button:active {
+#add-media-button:active {
     transform: scale(0.98);
 }
 
 /* Smaller sidebar buttons */
-
 .sidebar-button {
-    width: 100%;
     min-height: 42px;
     height: auto;
 
@@ -76,20 +69,18 @@ body {
     text-align: left;
     white-space: normal;
 
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: background-color 0.4s, border-color 0.4s;
 }
-
 .sidebar-button:hover {
-    background-color: #edeeee;
+    background-color: #2d2d2d;
     border-color: #198754;
 }
-
 .sidebar-button:focus {
     box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.25);
 }
 
-/*CONTENT: this section moves everything but sidebar to the right*/
+/* Move everything but the sidebar to the right */
 .content {
-    margin-left: 240px;
-    padding: 30px;
+    margin-left: 15rem;
+    padding: 2rem;
 }

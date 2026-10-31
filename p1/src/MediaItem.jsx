@@ -1,22 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
 const MediaItem = (props) => {
- // State Var
+  // State Var
 
- //useEffects
+  // useEffects
 
-
-
- 
-  return (
-    <div style={{ border: '1px solid blue', padding: '10px', margin: '5px' }}>
-      <p>{props?.name}</p>
-	  <p>img here from database</p>
-	  <p>item description from database</p>
-    </div>
-  );
+  return <Card style={{backgroundColor: "rgba(0, 0, 0, 0)",
+  color: "#ffffff", border: '0.1rem solid blue', borderRadius: "0.75rem",
+  padding: '10px', margin: '5px'}}>
+    <p>{props ? props.name : "No item name provided"}</p>
+    <p>img here from database</p>
+    <p>item description from database</p>
+  </Card>;
 };
 
 export default MediaItem;

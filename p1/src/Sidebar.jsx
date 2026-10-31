@@ -20,12 +20,12 @@ function Sidebar() {
     }
 
     return (
-        <div className="sidebar">
-
+        <div id="sidebar" style={{borderRight: "1px solid black"}}>
             {/* ADD MEDIA BUTTON */}
             <Button
-                className="add-media-button"
+                id="add-media-button"
                 onClick={() => navigate('/add-media')}
+                style={{margin: "1rem", width: "13rem", height: "13rem"}}
             >
                 +
             </Button>
@@ -34,6 +34,8 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterGames}
+                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
+                    marginLeft: "1rem", marginRight: "1rem"}}
             >
                 Games
             </Button>
@@ -41,6 +43,8 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterMusic}
+                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
+                    marginLeft: "1rem", marginRight: "1rem"}}
             >
                 Music
             </Button>
@@ -48,10 +52,11 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterMovies}
+                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
+                    marginLeft: "1rem", marginRight: "1rem"}}
             >
                 Movies
             </Button>
-
         </div>
     );
 }
