@@ -26,7 +26,7 @@ function App() {
   // we will have to make it such that users can add items that already exist in
   //     the database
   useEffect(() => {
-    const testArr = [
+    let testArr = [
       { name: "Item A", id: "a", img: "x" },
       { name: "Item B", id: "b", img: "y" },
       { name: "Item C", id: "c", img: "z" },
@@ -39,6 +39,11 @@ function App() {
   function searchReset() {
     // just set the state variable to nothing
     setFilterContains("");
+  }
+
+  // For media removal
+  const remove = (id) => {
+    setMedia(media => media.filter((val) => val.id !== id));
   }
 
   // App Return
@@ -73,7 +78,7 @@ function App() {
           )) : /* THIS TERNARY LOADS ALL DATA WHEN PAGE IS FIRST LOADED */
           media?.map((s) => (
             <Col key={s.id} xs={12} sm={12} md={6} lg={4} xl={3}>
-              {MediaItem(s)}
+              <MediaItem {...s} remove={remove}></MediaItem>
             </Col>
           ))}
         </Row>
