@@ -19,7 +19,7 @@ function Sidebar() {
     }
 
     return (
-        <div id="sidebar" style={{borderRight: "1px solid black"}}>
+        <div id="sidebar">
             {/* ADD MEDIA BUTTON */}
             <Button
                 id="add-media-button"

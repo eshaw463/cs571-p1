@@ -21,6 +21,8 @@ body {
 
     display: flex;
     flex-direction: column;
+
+    border-right: 1px solid #623c7a;
 }
 
 /* Large green add button on the left sidebar */
