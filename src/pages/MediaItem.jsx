@@ -21,8 +21,8 @@ function MediaItem(props) {
       padding: '0rem', margin: '0rem'}}
     ></div>
     <p>{props ? props.name : "No item name provided"}</p>
-    <p>img here from database</p>
-    <p>item description from database</p>
+    <p>{props ? props.image : "No item image provided"}</p>
+    <p>{props ? props.description : "No item description provided"}</p>
     <RemoveButton id={props.id} remove={remove}></RemoveButton>
   </Card>;
 }

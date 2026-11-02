@@ -11,6 +11,52 @@ function App() {
   const [filterContains, setFilterContains] = useState();
   const [loaded, loader] = useState(false);
 
+
+// DATABASE MUTATORS:
+// using https://sqlitebrowser.org/dl/ to edit this directly for testing
+
+
+// get all media 
+  const fetchMedia = () => {
+  fetch('http://localhost:5000/api/media')
+    .then(res => res.json())
+    .then(data => {
+      setMedia(data);
+    })
+    .catch(err => {
+      console.error("Error fetching media:", err);
+    });
+};
+
+// add media
+const addNewMedia = () => {
+ 
+  // need to replace this w/ what we actually want to add in
+  const newMedia = {
+    name: "Parks and Rec",
+    image: "aaaaaaaa",
+    description: "A city government comedy"
+  };
+
+  fetch('http://localhost:5000/api/media', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newMedia)
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Successfully added:", data);
+
+      // Refresh media from database
+      fetchMedia();
+    })
+    .catch(err => {
+      console.error("Error adding media:", err);
+    });
+};
+
   // variables
   let filteredMedia = media?.filter(
     m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
@@ -24,15 +70,12 @@ function App() {
   // useEffects
   // sample "database" we are using before making an actual database
   // we will have to make it such that users can add items that already exist in
-  //     the database
+  //  the database
   useEffect(() => {
-    let testArr = [
-      { name: "Item A", id: "a", img: "x" },
-      { name: "Item B", id: "b", img: "y" },
-      { name: "Item C", id: "c", img: "z" },
-      { name: "Item D", id: "d", img: "k" }
-    ];
-    setMedia(testArr);
+    // addNewMedia();
+    // adds sample media
+
+    fetchMedia();
   }, []);
 
   // reset search
