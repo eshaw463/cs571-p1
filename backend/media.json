@@ -1,0 +1,20 @@
+[
+{
+    "id": 1,
+    "name": "Mountain Landscape",
+    "image": "/images/mountain.jpg",
+    "description": "A beautiful mountain landscape during sunset."
+  },
+  {
+    "id": 2,
+    "name": "Ocean Waves",
+    "image": "/images/ocean.jpg",
+    "description": "A peaceful view of waves crashing along the shoreline."
+  },
+  {
+    "id": 3,
+    "name": "Forest Trail",
+    "image": "/images/forest.jpg",
+    "description": "A scenic walking trail through a dense green forest."
+  }
+]

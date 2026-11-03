@@ -12,50 +12,21 @@ function App() {
   const [loaded, loader] = useState(false);
 
 
-// DATABASE MUTATORS:
-// using https://sqlitebrowser.org/dl/ to edit this directly for testing
-
-
-// get all media 
-  const fetchMedia = () => {
-  fetch('http://localhost:5000/api/media')
-    .then(res => res.json())
-    .then(data => {
-      setMedia(data);
-    })
-    .catch(err => {
-      console.error("Error fetching media:", err);
-    });
-};
-
-// add media
-const addNewMedia = () => {
- 
-  // need to replace this w/ what we actually want to add in
-  const newMedia = {
-    name: "Parks and Rec",
-    image: "aaaaaaaa",
-    description: "A city government comedy"
-  };
-
-  fetch('http://localhost:5000/api/media', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newMedia)
+  // backend connections
+ function loadMedia(){
+  fetch('../../backend/media.json')
+  .then(response => {
+    if (!response.ok) throw new Error('response not ok');
+    return response.json();
   })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Successfully added:", data);
+  .then(data => {
 
-      // Refresh media from database
-      fetchMedia();
-    })
-    .catch(err => {
-      console.error("Error adding media:", err);
-    });
-};
+    // sets media
+    setMedia(JSON.parse(JSON.stringify(data)));
+    return 0;
+  })
+ }
+
 
   // variables
   let filteredMedia = media?.filter(
@@ -64,18 +35,12 @@ const addNewMedia = () => {
   );
   // TODO: add OR statements for description so searching seaches both name &
   //     description at once!!!! (unless we just want it to be name)
-  // TODO: we should make sidebar buttons filter by GENRE or by MEDIA TYPE
-  //     (music, game, etc)
 
-  // useEffects
-  // sample "database" we are using before making an actual database
-  // we will have to make it such that users can add items that already exist in
-  //  the database
+
   useEffect(() => {
-    // addNewMedia();
-    // adds sample media
+    // set media upon first load
+    loadMedia();
 
-    fetchMedia();
   }, []);
 
   // reset search
@@ -84,7 +49,7 @@ const addNewMedia = () => {
     setFilterContains("");
   }
 
-  // For media removal
+  // For media removal ... edit later lol
   const remove = (id) => {
     setMedia(media => media.filter((val) => val.id !== id));
   }
@@ -112,6 +77,8 @@ const addNewMedia = () => {
         <br />
       </Form>
 
+      <Button id="aaaaaaaaaaa">Test Button</Button>
+
       <Container className="mt-5">
         <Row>
           {loaded ? filteredMedia?.map((s) => (
@@ -127,6 +94,7 @@ const addNewMedia = () => {
         </Row>
       </Container>
     </div>
+
   </>;
 }
 

@@ -15,4 +15,3 @@ should prob also:
 Extras (COMPLETELY UNECESSARY BUT MIGHT DO LATER lol):
 * navbar??? functionality to look at others' profiles
 * can check out Homework 5 for the Router component if needed
-* use some kind of API/database storage so others can create w/existing media other users put in
