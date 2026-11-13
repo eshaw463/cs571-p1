@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Image } from 'react-bootstrap';
 import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
 
@@ -21,7 +21,7 @@ function App() {
  // LOAD MEDIA
  function loadMedia(){
   let testArr = [
-      { name: "Item A", id: "a", image: "x"},
+      { name: "Item A", id: "a", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQFSI1xfZQ5sLjCUPoF7rroMUtVTO4L-JO8tyPEBImP4AR6vKP2V704T4&s=10"},
       { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
       { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
       { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}

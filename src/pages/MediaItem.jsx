@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col, Image } from 'react-bootstrap';
 import RemoveButton from './RemoveButton';
 
 function MediaItem(props) {
@@ -21,7 +21,7 @@ function MediaItem(props) {
       padding: '0rem', margin: '0rem'}}
     ></div>
     <p>{props.name ? props.name : "No item name provided"}</p>
-    <p>{props.image ? props.image : "No item image provided"}</p>
+    <Image src={props.image} alt="there is no image to display" fluid />
     <p>{props.description ? props.description : "No item description provided"}</p>
     <RemoveButton id={props.id} remove={remove}></RemoveButton>
   </Card>;
