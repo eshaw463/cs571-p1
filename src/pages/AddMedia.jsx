@@ -1,19 +1,28 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { useState, useEffect, useRef } from 'react';
+import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
 
-const MediaItem = (props) => {
+const AddMediaPage = (props) => {
   // State Var
+  const titleText = useRef();
+  const bodyText = useRef();
+  const imgText = useRef();
 
   // useEffects
 
-  return <Card style={{backgroundColor: "rgba(0, 0, 0, 0)",
-  color: "#ffffff", border: '0.1rem solid blue', borderRadius: "0.75rem",
-  padding: '10px', margin: '5px'}}>
-    <p>{props ? props.name : "No item name provided"}</p>
-    <p>img here from database</p>
-    <p>item description from database</p>
-  </Card>;
+  return <>
+
+    <Form>
+            <Form.Label htmlFor="titleText">Title</Form.Label>
+            <Form.Control id="titleText" ref={titleText}/>
+            <Form.Label htmlFor="bodyText">Description</Form.Label>
+            <Form.Control id="bodyText" ref={bodyText}/>
+            <Form.Label htmlFor="imgText">Image</Form.Label>
+            <Form.Control id="imgText" ref={imgText}/>
+		</Form>
+
+
+</>
 };
 
-export default MediaItem;
+export default AddMediaPage;

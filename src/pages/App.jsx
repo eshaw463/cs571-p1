@@ -13,7 +13,12 @@ function App() {
   const [loaded, loader] = useState(false);
 
 
-  // backend connections
+  /* 
+  
+    backend connections
+  
+  */
+ // LOAD MEDIA
  function loadMedia(){
   let testArr = [
       { name: "Item A", id: "a", image: "x"},
@@ -22,26 +27,35 @@ function App() {
       { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
     ];
     setMedia(testArr);
-
  }
 
-function addMedia() {
+// ADD MEDIA
+function addMedia(n, i, img, d) {
+// button existing causes too many rerenders... why?????
+  const newItem = {
+    name: n,
+    id: i, 
+    image: img,
+    description: d
+  };
 
-const newItem = {
-  name: "Desert Dunes", // String
-  id: "4", 
-  image: "/images/desert.jpg", // String (matching your relative path pattern)
-  description: "Golden sand dunes stretching across the horizon." // String
-};
+  let newMedia = [...media];
+  newMedia.push(newItem);
 
-let newMedia = [...media];
-newMedia.push(newItem);
-
-setMedia(newMedia);
+  setMedia(newMedia);
 }
 
 
-  // variables
+
+
+
+
+
+  /*
+
+    Filters
+
+  */
   let filteredMedia = media?.filter(
     m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
     || m.image?.toLowerCase().includes(filterContains?.toLowerCase().trim())
@@ -50,6 +64,9 @@ setMedia(newMedia);
   //     description at once!!!! (unless we just want it to be name)
 
 
+  /**
+   * UseEffects
+   */
   useEffect(() => {
     // set media upon first load
     loadMedia();
@@ -66,6 +83,9 @@ setMedia(newMedia);
   const remove = (id) => {
     setMedia(media => media.filter((val) => val.id !== id));
   }
+
+
+
 
   // App Return
   return <>
@@ -90,7 +110,7 @@ setMedia(newMedia);
         <br />
       </Form>
 
-      <Button id="aaaaaaaaaaa" onClick={addMedia}>Test Button</Button>
+      {/*<Button id="aaaaaaaaaaa" onClick={addMedia("Item E", "4", "image", "woof")}>Test Button</Button>*/}
 
       <Container className="mt-5">
         <Row>
