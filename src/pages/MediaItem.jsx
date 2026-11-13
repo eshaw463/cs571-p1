@@ -20,9 +20,9 @@ function MediaItem(props) {
       border: '0rem solid #623c7a', borderRadius: "0.75rem",
       padding: '0rem', margin: '0rem'}}
     ></div>
-    <p>{props ? props.name : "No item name provided"}</p>
-    <p>{props ? props.image : "No item image provided"}</p>
-    <p>{props ? props.description : "No item description provided"}</p>
+    <p>{props.name ? props.name : "No item name provided"}</p>
+    <p>{props.image ? props.image : "No item image provided"}</p>
+    <p>{props.description ? props.description : "No item description provided"}</p>
     <RemoveButton id={props.id} remove={remove}></RemoveButton>
   </Card>;
 }

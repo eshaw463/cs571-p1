@@ -7,31 +7,44 @@ import Sidebar from './Sidebar.jsx';
 
 function App() {
   // State Variables
-  const [media, setMedia] = useState([]);
+  const [media, setMedia] = useState([]); 
+  // will eventually be session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
   const [filterContains, setFilterContains] = useState();
   const [loaded, loader] = useState(false);
 
 
   // backend connections
  function loadMedia(){
-  fetch('../../backend/media.json')
-  .then(response => {
-    if (!response.ok) throw new Error('response not ok');
-    return response.json();
-  })
-  .then(data => {
+  let testArr = [
+      { name: "Item A", id: "a", image: "x"},
+      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
+      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
+      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
+    ];
+    setMedia(testArr);
 
-    // sets media
-    setMedia(JSON.parse(JSON.stringify(data)));
-    return 0;
-  })
  }
+
+function addMedia() {
+
+const newItem = {
+  name: "Desert Dunes", // String
+  id: "4", 
+  image: "/images/desert.jpg", // String (matching your relative path pattern)
+  description: "Golden sand dunes stretching across the horizon." // String
+};
+
+let newMedia = [...media];
+newMedia.push(newItem);
+
+setMedia(newMedia);
+}
 
 
   // variables
   let filteredMedia = media?.filter(
     m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-    || m.img?.toLowerCase().includes(filterContains?.toLowerCase().trim())
+    || m.image?.toLowerCase().includes(filterContains?.toLowerCase().trim())
   );
   // TODO: add OR statements for description so searching seaches both name &
   //     description at once!!!! (unless we just want it to be name)
@@ -77,7 +90,7 @@ function App() {
         <br />
       </Form>
 
-      <Button id="aaaaaaaaaaa">Test Button</Button>
+      <Button id="aaaaaaaaaaa" onClick={addMedia}>Test Button</Button>
 
       <Container className="mt-5">
         <Row>
