@@ -7,10 +7,10 @@ import MediaItem from "./MediaItem.jsx";
 const AddMediaPage = (props) => {
  // starting var
   let testArr = [
-      { name: "Item A", id: "a", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQFSI1xfZQ5sLjCUPoF7rroMUtVTO4L-JO8tyPEBImP4AR6vKP2V704T4&s=10"},
-      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
-      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
-      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
+      { name: "Serial Experiments Lain", id: "sel", image: "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled", description: "1996 anime"},
+      { name: "Come In", id: "comeinweatherday", image: "https://t2.genius.com/unsafe/861x861/https%3A%2F%2Fimages.genius.com%2Fa414dc591550f011823d77397b6b7e2e.1000x1000x1.jpg" , description: "Album by Weatherday"},
+      { name: "Six of Crows", id: "sixofcrows", image: "https://upload.wikimedia.org/wikipedia/en/1/10/Six_of_Crows_by_Leigh_Bardugo_book_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled" , description: "Book by Leigh Bardugo"},
+      { name: "Celeste", id: "celeste", image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/500px-Celeste_box_art_full.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" , description: "Game by Maddy Thorson"}
     ];
 
 
