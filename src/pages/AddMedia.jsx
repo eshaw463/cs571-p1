@@ -5,10 +5,23 @@ import Sidebar from './Sidebar.jsx';
 import MediaItem from "./MediaItem.jsx";
 
 const AddMediaPage = (props) => {
-  // State Var
+ // starting var
+  let testArr = [
+      { name: "Item A", id: "a", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQFSI1xfZQ5sLjCUPoF7rroMUtVTO4L-JO8tyPEBImP4AR6vKP2V704T4&s=10"},
+      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
+      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
+      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
+    ];
+
+
+
   // State Variables
-    const [media, setMedia] = useState([]); 
-    // will eventually be session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
+    const [media, setMedia] = useState(() => {
+            const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
+            console.log(saved);
+            return saved ? saved : testArr;
+        });
+    // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
     const [filterContains, setFilterContains] = useState();
     const [loaded, loader] = useState(false);
 
@@ -20,16 +33,26 @@ const AddMediaPage = (props) => {
 
 
 
+// TEST FOR ADD MEDIA
+// function addMedia() {
+//   const newItem = {
+//     name: "aa",
+//     id: "aa", 
+//     image: "aa",
+//     description: "aa"
+//   };
+
+//   let newMedia = [...media];
+//   newMedia.push(newItem);
+  
+//   sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia))
+//   setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
+// }
+
+
   // LOAD MEDIA
  function loadMedia(){
-  // PULL FROM SESSION STORAGE OF MEDIA RATHER THAN RECREATING THE WHOLE THING HERE!!!!!!!!!!!!!!
-  let testArr = [
-      { name: "Item A", id: "a", image: "x"},
-      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
-      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
-      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
-    ];
-    setMedia(testArr);
+  //
  }
 
   // useEffects
@@ -83,7 +106,25 @@ const AddMediaPage = (props) => {
             <Form.Control id="bodyText" ref={bodyText}/>
             <Form.Label htmlFor="imgText">Image</Form.Label>
             <Form.Control id="imgText" ref={imgText}/>
-            <Button id="addNewMedia">Add New Media</Button>
+            <Button id="addNewMedia" onClick={() => {
+              let nomen = titleText.current.value;
+              let bod = bodyText.current.value;
+              let pic = imgText.current.value;
+
+                const newItem = {
+                name: nomen,
+                id: nomen+bod+pic, 
+                image: pic,
+                description: bod
+              };
+
+              let newMedia = [...media];
+              newMedia.push(newItem);
+              
+              sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia))
+              setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
+
+            }}>Add New Media</Button>
             <br />
             <br />
             <br />

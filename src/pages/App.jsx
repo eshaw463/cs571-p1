@@ -5,12 +5,29 @@ import { Button, Container, Row, Col, Form, Image } from 'react-bootstrap';
 import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
 
+// right now the filter & search is fucked up & is duplicating elements (after adding one) !!!!!!!! fix later
+
+
 function App() {
+  // starting var
+  let testArr = [
+      { name: "Item A", id: "a", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQFSI1xfZQ5sLjCUPoF7rroMUtVTO4L-JO8tyPEBImP4AR6vKP2V704T4&s=10"},
+      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
+      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
+      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
+    ];
+
+
   // State Variables
-  const [media, setMedia] = useState([]); 
   // will eventually be session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
   const [filterContains, setFilterContains] = useState();
   const [loaded, loader] = useState(false);
+
+  const [media, setMedia] = useState(() => {
+        const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
+        console.log(saved);
+        return saved ? saved : testArr;
+    });
 
 
   /* 
@@ -20,32 +37,8 @@ function App() {
   */
  // LOAD MEDIA
  function loadMedia(){
-  let testArr = [
-      { name: "Item A", id: "a", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQFSI1xfZQ5sLjCUPoF7rroMUtVTO4L-JO8tyPEBImP4AR6vKP2V704T4&s=10"},
-      { name: "Item B", id: "b", image: "y" , description: "waaaaaaa"},
-      { name: "Item C", id: "c", image: "z" , description: "waaaaaaa"},
-      { name: "Item D", id: "d", image: "k" , description: "waaaaaaa"}
-    ];
-    setMedia(testArr);
+   // sessionStorage.setItem('SessionMedia', JSON.stringify(media))
  }
-
-// ADD MEDIA
-function addMedia(n, i, img, d) {
-// button existing causes too many rerenders... why?????
-  const newItem = {
-    name: n,
-    id: i, 
-    image: img,
-    description: d
-  };
-
-  let newMedia = [...media];
-  newMedia.push(newItem);
-
-  setMedia(newMedia);
-}
-
-
 
 
 
@@ -109,8 +102,6 @@ function addMedia(n, i, img, d) {
         <br />
         <br />
       </Form>
-
-      {/*<Button id="aaaaaaaaaaa" onClick={addMedia("Item E", "4", "image", "woof")}>Test Button</Button>*/}
 
       <Container className="mt-5">
         <Row>
