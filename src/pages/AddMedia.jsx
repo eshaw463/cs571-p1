@@ -32,20 +32,20 @@ function AddMediaPage (props) {
   const imgText = useRef();
 
   function uploadMedia() {
-    let nomen = titleText.current.value;
-    let bod = bodyText.current.value;
-    let pic = imgText.current.value;
+    let name = titleText.current.value;
+    let body = bodyText.current.value;
+    let imgURL = imgText.current.value;
 
     const newItem = {
-      name: nomen,
-      id: nomen+bod+pic, 
-      image: pic,
-      description: bod
+      name: name,
+      id: name + body + imgURL, 
+      image: imgURL,
+      description: body
     };
 
     let newMedia = [...media];
     newMedia.push(newItem);
-    
+
     sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia));
     setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')));
 
