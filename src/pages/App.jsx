@@ -9,9 +9,9 @@ import Context from "../main/Context.jsx";
 function App() {
   // State Variables
   // will eventually be session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
-  const [filterContains, setFilterContains] = useState();
-  const [loaded, loader] = useState(false);
+  const [filterText, setFilterText] = useState("");
   const [media, setMedia] = useContext(Context);
+  const [filteredMedia, setFilteredMedia] = useState(undefined);
 
   /*
     backend connections
@@ -20,22 +20,32 @@ function App() {
   /*
     Filters
   */
-  let filteredMedia = media?.filter(
-    m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-    || m.description?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-  );
   // TODO: add OR statements for description so searching seaches both name &
   //     description at once!!!! (unless we just want it to be name)
+  useEffect(() => {
+    let filtered;
+    if (filterText === "") {
+      filtered = media;
+    } else {
+      filtered = media?.filter(m => m.name?.toLowerCase()
+      .includes(filterText?.toLowerCase().trim())
+      || m.description?.toLowerCase()
+      .includes(filterText?.toLowerCase().trim()));
+    }
+    setFilteredMedia(filtered);
+  }, [media]);
 
   // reset search
   function searchReset() {
     // just set the state variable to nothing
-    setFilterContains("");
+    setFilterText("");
   }
 
   // For media removal ... edit later lol
   const remove = (id) => {
-    setMedia(media => media.filter((val) => val.id !== id));
+    let newMedia = media.filter((val) => val.id !== id);
+    sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia));
+    setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')));
   }
 
   // App Return
@@ -51,8 +61,8 @@ function App() {
         <Form.Label htmlFor="searchContains">Search</Form.Label>
         <Form.Control
           id="searchContains"
-          value={filterContains}
-          onChange={e => {setFilterContains(e.target.value); loader(true)}}
+          value={filterText}
+          onChange={e => {setFilterText(e.target.value)}}
           placeholder="Search for a piece of media..."
         />
         <br />
@@ -63,9 +73,9 @@ function App() {
 
       <Container className="mt-5">
         <Row>
-          {loaded ? filteredMedia?.map((s) => (
+          {media ? filteredMedia?.map((s) => (
             <Col key={s.id} xs={12} sm={12} md={6} lg={4} xl={3}>
-              {MediaItem(s)}
+              <MediaItem {...s} remove={remove} />
             </Col>
           )) : /* THIS TERNARY LOADS ALL DATA WHEN PAGE IS FIRST LOADED */
           media?.map((s) => (
@@ -76,7 +86,6 @@ function App() {
         </Row>
       </Container>
     </div>
-
   </>;
 }
 

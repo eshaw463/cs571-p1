@@ -14,9 +14,14 @@ function Layout(props) {
     // LOAD MEDIA
     // set media upon first load
     const [media, setMedia] = useState(() => {
-        const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
-        console.log(saved);
-        return saved ? saved : testArr;
+        const saved = JSON.parse(sessionStorage.getItem('SessionMedia'));
+
+        // TODO: remove
+        if (saved === undefined || saved.length === 0) {
+            return testArr;
+        }
+
+        return saved;
     });
 
     return <Context.Provider value={[media, setMedia]}>

@@ -9,7 +9,6 @@ import Context from "../main/Context.jsx";
 function AddMediaPage (props) {
   const navigate = useNavigate();
   const [media, setMedia] = useContext(Context);
-  console.log(media);
 
   // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
   const [filterContains, setFilterContains] = useState();
@@ -55,26 +54,6 @@ function AddMediaPage (props) {
   //   sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia))
   //   setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
   // }
-
-  // useEffects
-  useEffect(() => {
-    // set media upon first load
-  }, []);
-
-  /*
-    Filters
-   */
-  let filteredMedia = media?.filter(
-    m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-    || m.image?.toLowerCase().includes(filterContains?.toLowerCase().trim())
-  );
-  // TODO: add OR statements for description so searching seaches both name &
-  //     description at once!!!! (unless we just want it to be name)
-
-  // For media removal ... edit later lol
-  const addToUser = (id) => {
-    // setMedia(media => media.filter((val) => val.id !== id));
-  }
 
   return <>
     <div class="sidebar">
