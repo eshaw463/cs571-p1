@@ -8,13 +8,13 @@ import MediaItem from "./MediaItem.jsx";
 function AddMediaPage (props) {
   const navigate = useNavigate();
 
- // starting var
+  // starting var
   let testArr = [
-      { name: "Serial Experiments Lain", id: "sel", image: "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled", description: "1996 anime"},
-      { name: "Come In", id: "comeinweatherday", image: "https://t2.genius.com/unsafe/861x861/https%3A%2F%2Fimages.genius.com%2Fa414dc591550f011823d77397b6b7e2e.1000x1000x1.jpg" , description: "Album by Weatherday"},
-      { name: "Six of Crows", id: "sixofcrows", image: "https://upload.wikimedia.org/wikipedia/en/1/10/Six_of_Crows_by_Leigh_Bardugo_book_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled" , description: "Book by Leigh Bardugo"},
-      { name: "Celeste", id: "celeste", image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/500px-Celeste_box_art_full.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" , description: "Game by Maddy Thorson"}
-    ];
+    { name: "Serial Experiments Lain", id: "sel", image: "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg", description: "1996 anime"},
+    { name: "Come In", id: "comeinweatherday", image: "https://t2.genius.com/unsafe/861x861/https%3A%2F%2Fimages.genius.com%2Fa414dc591550f011823d77397b6b7e2e.1000x1000x1.jpg" , description: "Album by Weatherday"},
+    { name: "Six of Crows", id: "sixofcrows", image: "https://upload.wikimedia.org/wikipedia/en/1/10/Six_of_Crows_by_Leigh_Bardugo_book_cover.jpeg" , description: "Book by Leigh Bardugo"},
+    { name: "Celeste", id: "celeste", image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/500px-Celeste_box_art_full.png" , description: "Game by Maddy Thorson"}
+  ];
 
   // State Variables
   const [media, setMedia] = useState(() => {
@@ -22,6 +22,7 @@ function AddMediaPage (props) {
     console.log(saved);
     return saved ? saved : testArr;
   });
+
   // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
   const [filterContains, setFilterContains] = useState();
   const [loaded, loader] = useState(false);
@@ -98,7 +99,6 @@ function AddMediaPage (props) {
       <Sidebar/>
     </div>
 
-
     <div class="content">
       <Form>
         <Form.Label htmlFor="titleText">Title</Form.Label>
@@ -110,10 +110,10 @@ function AddMediaPage (props) {
         <Form.Label htmlFor="imgText">Image</Form.Label>
         <Form.Control id="imgText" ref={imgText}
           placeholder="URL to an image for your media"/>
-        <Button id="addNewMedia" onClick={uploadMedia}>Add New Media</Button>
+        <Button id="addNewMedia" onClick={uploadMedia} style={{margin: 5, backgroundColor: "#bf5f1c", borderWidth: 0}}>Add New Media</Button>
+        <Button onClick={() => navigate("/")} style={{margin: 5, backgroundColor: "#623c7a", borderWidth: 0}}>Cancel</Button>
       </Form>
     </div>
-
   </>
 };
 
