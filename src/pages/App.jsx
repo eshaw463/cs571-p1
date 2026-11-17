@@ -5,7 +5,6 @@ import Sidebar from './Sidebar.jsx';
 import './App.css';
 
 // right now the filter & search is fucked up & is duplicating elements (after adding one) !!!!!!!! fix later
-
 function App() {
   // starting var
   let testArr = [
@@ -26,7 +25,6 @@ function App() {
     console.log(saved);
     return saved ? saved : testArr;
   });
-
 
   /*
     backend connections

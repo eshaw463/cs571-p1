@@ -8,6 +8,13 @@ import MediaItem from "./MediaItem.jsx";
 function AddMediaPage (props) {
   const navigate = useNavigate();
 
+  // State Variables
+  const [media, setMedia] = useState(() => {
+    const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
+    console.log(saved);
+    return saved ? saved : testArr;
+  });
+
   // starting var
   let testArr = [
     { name: "Serial Experiments Lain", id: "sel", image: "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg", description: "1996 anime"},
@@ -15,13 +22,6 @@ function AddMediaPage (props) {
     { name: "Six of Crows", id: "sixofcrows", image: "https://upload.wikimedia.org/wikipedia/en/1/10/Six_of_Crows_by_Leigh_Bardugo_book_cover.jpeg" , description: "Book by Leigh Bardugo"},
     { name: "Celeste", id: "celeste", image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/500px-Celeste_box_art_full.png" , description: "Game by Maddy Thorson"}
   ];
-
-  // State Variables
-  const [media, setMedia] = useState(() => {
-    const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
-    console.log(saved);
-    return saved ? saved : testArr;
-  });
 
   // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
   const [filterContains, setFilterContains] = useState();
@@ -82,12 +82,6 @@ function AddMediaPage (props) {
   );
   // TODO: add OR statements for description so searching seaches both name &
   //     description at once!!!! (unless we just want it to be name)
-
-  // reset search
-  function searchReset() {
-    // just set the state variable to nothing
-    setFilterContains("");
-  }
 
   // For media removal ... edit later lol
   const addToUser = (id) => {
