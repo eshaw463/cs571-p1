@@ -17,14 +17,14 @@ function AddMediaPage (props) {
     ];
 
   // State Variables
-    const [media, setMedia] = useState(() => {
-      const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
-      console.log(saved);
-      return saved ? saved : testArr;
-    });
-    // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
-    const [filterContains, setFilterContains] = useState();
-    const [loaded, loader] = useState(false);
+  const [media, setMedia] = useState(() => {
+    const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
+    console.log(saved);
+    return saved ? saved : testArr;
+  });
+  // session storage to stay during reload as long as browser isn't closed, must also be used & modified by AddMedia page
+  const [filterContains, setFilterContains] = useState();
+  const [loaded, loader] = useState(false);
 
   const titleText = useRef();
   const bodyText = useRef();
@@ -51,22 +51,21 @@ function AddMediaPage (props) {
     navigate("/");
   }
 
-// TEST FOR ADD MEDIA
-// function addMedia() {
-//   const newItem = {
-//     name: "aa",
-//     id: "aa", 
-//     image: "aa",
-//     description: "aa"
-//   };
+  // TEST FOR ADD MEDIA
+  // function addMedia() {
+  //   const newItem = {
+  //     name: "aa",
+  //     id: "aa", 
+  //     image: "aa",
+  //     description: "aa"
+  //   };
 
-//   let newMedia = [...media];
-//   newMedia.push(newItem);
-  
-//   sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia))
-//   setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
-// }
-
+  //   let newMedia = [...media];
+  //   newMedia.push(newItem);
+    
+  //   sessionStorage.setItem('SessionMedia', JSON.stringify(newMedia))
+  //   setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
+  // }
 
   // LOAD MEDIA
   useEffect(() => {
