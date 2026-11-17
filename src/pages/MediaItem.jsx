@@ -20,7 +20,7 @@ function MediaItem(props) {
             border: '0rem solid #623c7a', borderRadius: "0.75rem",
             padding: '0rem', margin: '0rem'}}
         ></div>
-        <p>{props.name ? props.name : "No item name provided"}</p>
+        <p>{props.name ? props.name : "MEOW"}</p>
         <Image src={props.image} alt="there is no image to display" fluid />
         <p>{props.description ? props.description : "No item description provided"}</p>
         <RemoveButton id={props.id} remove={remove}></RemoveButton>
