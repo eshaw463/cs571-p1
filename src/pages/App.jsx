@@ -1,12 +1,10 @@
-import React from 'react';
-import './App.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form, Image } from 'react-bootstrap';
 import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
+import './App.css';
 
 // right now the filter & search is fucked up & is duplicating elements (after adding one) !!!!!!!! fix later
-
 
 function App() {
   // starting var
@@ -24,30 +22,25 @@ function App() {
   const [loaded, loader] = useState(false);
 
   const [media, setMedia] = useState(() => {
-        const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
-        console.log(saved);
-        return saved ? saved : testArr;
-    });
-
-
-  /* 
-  
-    backend connections
-  
-  */
- // LOAD MEDIA
- function loadMedia(){
-   // sessionStorage.setItem('SessionMedia', JSON.stringify(media))
- }
-
-
-
+    const saved = JSON.parse(sessionStorage.getItem('SessionMedia'))
+    console.log(saved);
+    return saved ? saved : testArr;
+  });
 
 
   /*
+    backend connections
+  */
 
+  // LOAD MEDIA
+   useEffect(() => {
+      // set media upon first load
+      console.log(JSON.parse(sessionStorage.getItem('SessionMedia')));
+   }, []);
+
+
+  /*
     Filters
-
   */
   let filteredMedia = media?.filter(
     m => m.name?.toLowerCase().includes(filterContains?.toLowerCase().trim())
@@ -55,16 +48,6 @@ function App() {
   );
   // TODO: add OR statements for description so searching seaches both name &
   //     description at once!!!! (unless we just want it to be name)
-
-
-  /**
-   * UseEffects
-   */
-  useEffect(() => {
-    // set media upon first load
-    loadMedia();
-
-  }, []);
 
   // reset search
   function searchReset() {
