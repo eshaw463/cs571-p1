@@ -67,13 +67,10 @@ function AddMediaPage (props) {
   //   setMedia(JSON.parse(sessionStorage.getItem('SessionMedia')))
   // }
 
-  // LOAD MEDIA
+  // useEffects
   useEffect(() => {
     // set media upon first load
-    loadMedia();
   }, []);
-
-  // useEffects
 
   /*
     Filters
