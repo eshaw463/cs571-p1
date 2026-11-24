@@ -17,7 +17,11 @@ function Layout(props) {
         const saved = JSON.parse(sessionStorage.getItem('SessionMedia'));
 
         // TODO: remove
+<<<<<<< HEAD
         if (!saved || saved.length === 0) {
+=======
+        if (saved === undefined || saved === null || saved.length === 0) {
+>>>>>>> f1680951d6432fcb4bc05b29aaf1fc4ecd1fd7af
             return testArr;
         }
 

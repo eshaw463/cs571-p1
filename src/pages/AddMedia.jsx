@@ -14,6 +14,14 @@ function AddMediaPage (props) {
     const [filterContains, setFilterContains] = useState();
     const [loaded, loader] = useState(false);
 
+    const GenresByType = {
+        "game": ["action", "adventure", "rpg", "fps", "mmo"],
+        "music": ["pop", "rock", "hip-hop", "indie", "metal", "r&b"],
+        "movie": ["action", "comedy", "drama", "horror", "sci-fi", "romance"]
+    };
+    const [mediaType, setMediaType] = useState("game");
+    const [genre, setGenre] = useState(GenresByType.game[0]);
+
     const titleText = useRef();
     const bodyText = useRef();
     const imgText = useRef();
@@ -22,12 +30,16 @@ function AddMediaPage (props) {
         let name = titleText.current.value;
         let body = bodyText.current.value;
         let imgURL = imgText.current.value;
+        let type = mediaType;
 
+        //updated to include type and genre
         const newItem = {
             name: name,
-            id: name + body + imgURL, 
+            id: name + body + imgURL + type + genre, 
             image: imgURL,
-            description: body
+            description: body,
+            type: type,
+            genre: genre
         };
 
         let newMedia = [...media];
@@ -77,6 +89,30 @@ function AddMediaPage (props) {
                 <Button onClick={() => navigate("/")}
                     style={{margin: 5, backgroundColor: "#623c7a", borderWidth: 0}}
                 >Cancel</Button>
+                <Form.Label htmlFor="mediaType">Type</Form.Label>
+                <Form.Select
+                    id="mediaType"
+                    value={mediaType}
+                    onChange={e => {
+                        const nextType = e.target.value;
+                        setMediaType(nextType);
+                        setGenre(GenresByType[nextType][0]);
+                    }}
+                >
+                    {Object.keys(GenresByType).map(type => (
+                        <option key={type} value={type}>{type}</option>
+                    ))}
+                </Form.Select>
+                <Form.Label htmlFor="genre">Genre</Form.Label>
+                <Form.Select
+                    id="genre"
+                    value={genre}
+                    onChange={e => setGenre(e.target.value)}
+                >
+                    {GenresByType[mediaType].map(option => (
+                        <option key={option} value={option}>{option}</option>
+                    ))}
+                </Form.Select>
             </Form>
         </div>
     </>

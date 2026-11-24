@@ -5,6 +5,19 @@ import { useNavigate } from 'react-router-dom';
 function Sidebar() {
     const navigate = useNavigate();
 
+       //"Tags" a series of small buttons created to filter by genre depending on the type of media
+    const createTags = (type) => {
+        return (GenresByType[type] ?? []).map((genre) => (
+      
+                <Button 
+                    key={genre}
+                    variant={genre === props.genre ? "primary" : "secondary"}
+                    onClick={() => filterTags(genre)}>
+                    {genre}
+                </Button>
+        ))
+    }
+
     // Example button functions
     function filterGames() {
         console.log("Filtering games");
@@ -18,6 +31,10 @@ function Sidebar() {
         console.log("Filtering movies");
     }
 
+    function filterTags(){
+        alert("Filtering tags")
+        
+    }
     return (
         <div id="sidebar">
             {/* ADD MEDIA BUTTON */}

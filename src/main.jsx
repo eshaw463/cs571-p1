@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')).render(
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<App />} />
-                    <Route index element={<AddMedia />} path="/add-media" />
+                    <Route path="add-media" element={<AddMedia />} />
 
                     {/* Any other path shows the 404 page. */}
                     <Route path="*" element={<NotFound />} />
