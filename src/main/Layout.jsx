@@ -17,7 +17,7 @@ function Layout(props) {
         const saved = JSON.parse(sessionStorage.getItem('SessionMedia'));
 
         // TODO: remove
-        if (saved === undefined || saved.length === 0) {
+        if (!saved || saved.length === 0) {
             return testArr;
         }
 
