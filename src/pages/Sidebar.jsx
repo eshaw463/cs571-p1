@@ -1,24 +1,18 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { SelectedUserContext, UserMediaContext } from '../main/Context.jsx';
 
 function Sidebar() {
     const navigate = useNavigate();
 
-       //"Tags" a series of small buttons created to filter by genre depending on the type of media
-    const createTags = (type) => {
-        return (GenresByType[type] ?? []).map((genre) => (
-      
-                <Button 
-                    key={genre}
-                    variant={genre === props.genre ? "primary" : "secondary"}
-                    onClick={() => filterTags(genre)}>
-                    {genre}
-                </Button>
-        ))
+    const [selectedUser, setSelectedUser] = useContext(SelectedUserContext);
+    const [usermedia] = useContext(UserMediaContext);
+
+    function changeUser(e) {
+        setSelectedUser(e.target.value);
     }
 
-    // Example button functions
     function filterGames() {
         console.log("Filtering games");
     }
@@ -31,17 +25,34 @@ function Sidebar() {
         console.log("Filtering movies");
     }
 
-    function filterTags(){
-        alert("Filtering tags")
-        
-    }
     return (
         <div id="sidebar">
+
+            {/* USER SELECTION */}
+            <Form.Group style={{ margin: "1rem", width: "13rem" }}>
+                <Form.Label>Select User</Form.Label>
+
+                <Form.Select
+                    value={selectedUser}
+                    onChange={changeUser}
+                >
+                    {usermedia.map(user => (
+                        <option key={user.user} value={user.user}>
+                            {user.user}
+                        </option>
+                    ))}
+                </Form.Select>
+            </Form.Group>
+
             {/* ADD MEDIA BUTTON */}
             <Button
                 id="add-media-button"
                 onClick={() => navigate('/add-media')}
-                style={{margin: "1rem", width: "13rem", height: "13rem"}}
+                style={{
+                    margin: "1rem",
+                    width: "13rem",
+                    height: "13rem"
+                }}
             >
                 +
             </Button>
@@ -50,8 +61,7 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterGames}
-                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
-                    marginLeft: "1rem", marginRight: "1rem"}}
+                style={{ margin: "0.2rem 1rem" }}
             >
                 Games
             </Button>
@@ -59,8 +69,7 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterMusic}
-                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
-                    marginLeft: "1rem", marginRight: "1rem"}}
+                style={{ margin: "0.2rem 1rem" }}
             >
                 Music
             </Button>
@@ -68,11 +77,11 @@ function Sidebar() {
             <Button
                 className="sidebar-button"
                 onClick={filterMovies}
-                style={{marginTop: "0.2rem", marginBottom: "0.2rem",
-                    marginLeft: "1rem", marginRight: "1rem"}}
+                style={{ margin: "0.2rem 1rem" }}
             >
                 Movies
             </Button>
+
         </div>
     );
 }
