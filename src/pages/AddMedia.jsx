@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar.jsx';
 import MediaItem from "./MediaItem.jsx";
 import Context from "../main/Context.jsx";
+import Layout from "../main/Layout.jsx";
 
 function AddMediaPage (props) {
     const navigate = useNavigate();

@@ -4,6 +4,7 @@ import MediaItem from "./MediaItem.jsx";
 import Sidebar from './Sidebar.jsx';
 import './App.css';
 import Context from "../main/Context.jsx";
+import Layout from "../main/Layout.jsx";
 
 // right now the filter & search is fucked up & is duplicating elements (after adding one) !!!!!!!! fix later
 function App() {
@@ -22,18 +23,20 @@ function App() {
      */
     // TODO: add OR statements for description so searching seaches both name &
     //     description at once!!!! (unless we just want it to be name)
-    useEffect(() => {
-        let filtered;
-        if (filterText === "") {
-            filtered = media;
-        } else {
-            filtered = media?.filter(m => m.name?.toLowerCase()
-            .includes(filterText?.toLowerCase().trim())
-            || m.description?.toLowerCase()
-            .includes(filterText?.toLowerCase().trim()));
-        }
-        setFilteredMedia(filtered);
-    }, [media]);
+   useEffect(() => {
+    let filtered;
+
+    if (filterText.trim() === "") {
+        filtered = media;
+    } else {
+        filtered = media.filter(m =>
+            m.name?.toLowerCase().includes(filterText.toLowerCase().trim()) ||
+            m.description?.toLowerCase().includes(filterText.toLowerCase().trim())
+        );
+    }
+
+    setFilteredMedia(filtered);
+}, [media, filterText]);
 
     // reset search
     function searchReset() {
@@ -50,7 +53,7 @@ function App() {
 
     // App Return
     return <>
-      <div class="sidebar">
+      <div className="sidebar">
         <Sidebar/>
       </div>
 
