@@ -22,7 +22,7 @@ function MediaItemAdd(props) {
         ></div>
         <p>{props.name ? props.name : "MEOW"}</p>
         <Image src={props.image} alt="there is no image to display" fluid />
-        <p>{props.description ? props.description : "No item description MEOW"}</p>
+        <p>{props.description ? props.description : "No item description"}</p>
         <AddButton id={props.id} remove={remove}></AddButton>
     </Card>;
 }

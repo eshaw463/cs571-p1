@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { SelectedUserContext, UserMediaContext } from '../main/Context.jsx';
@@ -20,14 +20,17 @@ function Sidebar(props) {
     }
 
     function filterGames() {
+        props.filterType("game")
         console.log("Filtering games");
     }
 
     function filterMusic() {
+        props.filterType("music")
         console.log("Filtering music");
     }
 
     function filterMovies() {
+        props.filterType("movie")
         console.log("Filtering movies");
     }
 

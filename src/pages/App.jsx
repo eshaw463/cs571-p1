@@ -17,8 +17,10 @@ function App() {
     const [media, setMedia] = useContext(MediaContext);
     const [usermedia, setUsermedia] = useContext(UserMediaContext);
     const [selectedUser] = useContext(SelectedUserContext);
-
-    
+    const [genre, setGenre] = useState("");
+    const [type, setType] = useState("");
+    console.log("LAYOUT MEDIA:", media);
+    console.log("TYPE:", media.find(m => m.id === "celeste")?.type);
 
     /*
      * Filters
@@ -30,17 +32,27 @@ function App() {
 
     // Apply search to the selected collection
     const filteredMedia = displayedMedia.filter(m =>
-        m.name?.toLowerCase().includes(filterText.toLowerCase().trim()) ||
-        m.description?.toLowerCase().includes(filterText.toLowerCase().trim())
+        console.log("Media", m) || 
+        (
+            m.name?.toLowerCase().includes(filterText.toLowerCase().trim()) ||
+            m.description?.toLowerCase().includes(filterText.toLowerCase().trim()) 
+        ) && 
+        (
+         !type || m.type?.toLowerCase().includes(type.toLowerCase().trim())
+        ) && 
+        (
+        ! genre || m.genre?.toLowerCase().includes(genre.toLowerCase().trim()) 
+        )     
     );
 
     // reset search
     function searchReset() {
         // just set the state variable to nothing
         setFilterText("");
+        setGenre("");
+        setType("");
     }
     
-
     // For media removal from selected user
     const remove = (id) => {
         setUsermedia(prev =>
@@ -58,10 +70,10 @@ function App() {
     // App Return
     return <>
       <div className="sidebar">
-        <Sidebar/>
+        <Sidebar filterType = {setType} />
       </div>
 
-        <div class="content">
+        <div className="content">
             <h1>MediaHornet</h1>
 
             <Form>

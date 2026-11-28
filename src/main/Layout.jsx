@@ -3,40 +3,49 @@ import { Outlet } from "react-router";
 import {
     MediaContext,
     UserMediaContext,
-    SelectedUserContext
+    SelectedUserContext,
+    TypeContext
 } from "./Context.jsx";
 
 function Layout() {
+    
     const testArr = [
         {
             name: "Serial Experiments Lain",
             id: "sel",
             image: "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg",
-            description: "1996 anime"
+            description: "1996 anime",
+            type: "Movie"
         },
         {
             name: "Come In",
             id: "comeinweatherday",
             image: "https://t2.genius.com/unsafe/861x861/https%3A%2F%2Fimages.genius.com%2Fa414dc591550f011823d77397b6b7e2e.1000x1000x1.jpg",
-            description: "Album by Weatherday"
+            description: "Album by Weatherday",
+            type: "Music"
+
         },
         {
             name: "Six of Crows",
             id: "sixofcrows",
             image: "https://upload.wikimedia.org/wikipedia/en/1/10/Six_of_Crows_by_Leigh_Bardugo_book_cover.jpeg",
-            description: "Book by Leigh Bardugo"
+            description: "Book by Leigh Bardugo",
+            type: "Movie"
         },
         {
             name: "Celeste",
             id: "celeste",
             image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/500px-Celeste_box_art_full.png",
-            description: "Game by Maddy Thorson"
+            description: "Game by Maddy Thorson",
+            type: "Game"
         }
     ];
 
     const [media, setMedia] = useState(() => {
+        console.log("test")
         const saved = localStorage.getItem("SessionMedia");
         return saved ? JSON.parse(saved) : testArr;
+
     });
 
     const [usermedia, setUsermedia] = useState(() => {
@@ -48,6 +57,10 @@ function Layout() {
             { user: "Tatianna", list: testArr }
         ];
     });
+
+    const [type, setType] = useState( () =>{
+        return localStorage.getItem("SessionType");
+    })
 
     const [selectedUser, setSelectedUser] = useState(() => {
     return localStorage.getItem("SelectedUser") || "Aubrey";
@@ -65,11 +78,17 @@ useEffect(() => {
         localStorage.setItem("UserMedia", JSON.stringify(usermedia));
     }, [usermedia]);
 
+    useEffect(() => {
+        localStorage.setItem("SessionType", type);
+    }, [type])
+
     return (
     <MediaContext.Provider value={[media, setMedia]}>
         <UserMediaContext.Provider value={[usermedia, setUsermedia]}>
             <SelectedUserContext.Provider value={[selectedUser, setSelectedUser]}>
+                <TypeContext.Provider value={[type, setType]}>
                 <Outlet />
+                </TypeContext.Provider>
             </SelectedUserContext.Provider>
         </UserMediaContext.Provider>
     </MediaContext.Provider>

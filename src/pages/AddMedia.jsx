@@ -23,7 +23,7 @@ function AddMediaPage (props) {
     const GenresByType = {
         "game": ["action", "adventure", "rpg", "fps", "mmo"],
         "music": ["pop", "rock", "hip-hop", "indie", "metal", "r&b"],
-        "movie": ["action", "comedy", "drama", "horror", "sci-fi", "romance"]
+        "movie": ["action", "comedy", "drama", "horror", "sci-fi", "romance"],            
     };
 
 
@@ -39,7 +39,6 @@ function AddMediaPage (props) {
         let imgURL = imgText.current.value;
         let type = mediaType;
 
-        //updated to include type and genre
         const newItem = {
             name: name,
             id: name + body + imgURL + type + genre, 
@@ -87,11 +86,13 @@ function AddMediaPage (props) {
        // Apply search to the selected collection
     const filteredMedia = media.filter(m =>
         m.name?.toLowerCase().includes(filterText.toLowerCase().trim()) ||
-        m.description?.toLowerCase().includes(filterText.toLowerCase().trim())
+        m.description?.toLowerCase().includes(filterText.toLowerCase().trim()) ||
+        m.genre?.toLowerCase().includes(genre.toLowerCase().trim())
     );
 
     function searchReset() {
         setFilterText("");
+        setGenre("");
     }
 
 // add from the global collection to a user collection
@@ -139,7 +140,7 @@ function AddMediaPage (props) {
     return (
         <>
             <div className="sidebar">
-                <Sidebar />
+                <Sidebar/>
             </div>
 
             <div className="content">
