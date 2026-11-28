@@ -31,6 +31,8 @@ function App() {
             .includes(filterText?.toLowerCase().trim())
             || m.description?.toLowerCase()
             .includes(filterText?.toLowerCase().trim()));
+
+            filtered = media?.filter(m => m)
         }
         setFilteredMedia(filtered);
     }, [media]);
@@ -51,7 +53,7 @@ function App() {
     // App Return
     return <>
       <div class="sidebar">
-        <Sidebar/>
+        <Sidebar  type={type} genre ={genre}/>
       </div>
 
         <div class="content">

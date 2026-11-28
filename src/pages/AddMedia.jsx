@@ -19,9 +19,10 @@ function AddMediaPage (props) {
         "music": ["pop", "rock", "hip-hop", "indie", "metal", "r&b"],
         "movie": ["action", "comedy", "drama", "horror", "sci-fi", "romance"]
     };
+
+
     const [mediaType, setMediaType] = useState("game");
     const [genre, setGenre] = useState(GenresByType.game[0]);
-
     const titleText = useRef();
     const bodyText = useRef();
     const imgText = useRef();
@@ -83,12 +84,8 @@ function AddMediaPage (props) {
                 <Form.Label htmlFor="imgText">Image</Form.Label>
                 <Form.Control id="imgText" ref={imgText}
                     placeholder="URL to an image for your media"/>
-                <Button id="addNewMedia" onClick={uploadMedia}
-                    style={{margin: 5, backgroundColor: "#bf5f1c", borderWidth: 0}}
-                >Add New Media</Button>
-                <Button onClick={() => navigate("/")}
-                    style={{margin: 5, backgroundColor: "#623c7a", borderWidth: 0}}
-                >Cancel</Button>
+                
+                <div>
                 <Form.Label htmlFor="mediaType">Type</Form.Label>
                 <Form.Select
                     id="mediaType"
@@ -113,6 +110,14 @@ function AddMediaPage (props) {
                         <option key={option} value={option}>{option}</option>
                     ))}
                 </Form.Select>
+                </div>
+
+                <Button id="addNewMedia" onClick={uploadMedia}
+                    style={{margin: 5, backgroundColor: "#bf5f1c", borderWidth: 0}}
+                >Add New Media</Button>
+                <Button onClick={() => navigate("/")}
+                    style={{margin: 5, backgroundColor: "#623c7a", borderWidth: 0}}
+                >Cancel</Button>
             </Form>
         </div>
     </>
